@@ -3,7 +3,7 @@ import torch
 import numpy as np
 import gc as garbage
 from tqdm.notebook import tqdm as tqdm_nb
-from callback import EarlyStopCallback, CheckpointCallback, ShowGraphCallback
+from jmt2.callback import EarlyStopCallback, CheckpointCallback, ShowGraphCallback
 
 class Trainer:
     def __init__(
