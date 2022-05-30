@@ -1,16 +1,22 @@
 from .Base import Callback
 
 import matplotlib.pyplot as plt
-from IPython.display import display, clear_output
+from matplotlib.ticker import MaxNLocator
+from IPython.display import display
 from ipywidgets import Output
 
 
 class ShowGraphCallback(Callback):
     def __init__(
         self,
+        monitors=None,
         **kwargs
     ):
         super().__init__(**kwargs)
+        if monitors == None:
+            self.monitors = ['train_loss', 'valid_loss']
+        else:
+            self.monitors = list(monitors)
         self.figure = plt.figure()
         self.ax = self.figure.add_subplot(1, 1, 1)
         self.out = Output()
@@ -19,19 +25,23 @@ class ShowGraphCallback(Callback):
     def show_graph(self, log: dict):
         # if self.verbose:
         #     self.message('show_graph')
-        with self.out:
-            # self.figure.clf()
-            # self.ax.set_ylim(top=None, bottom=0)
-            self.ax.cla()
-            if log == None:
-                self.ax.plot([0], [0], 'o')
-            else:
-                x = range(1, 1+len(log['train_loss']))
-                self.ax.plot(x, log['train_loss'], '-')
-                self.ax.plot(x, log['valid_loss'], '--')
-            display(self.figure)
-            clear_output(wait=True)
-            plt.pause(0.01)
+        try:
+            with self.out:
+                self.ax.cla()
+                self.ax.margins(y=1.0)
+                self.ax.set_ylim(bottom=0)
+                self.ax.xaxis.set_major_locator(MaxNLocator(integer=True))
+                if log == None:
+                    self.ax.plot([], [])
+                else:
+                    x = range(1, 1+len(log['train_loss']))
+                    marker = 'o' if len(x) < 2 else '-'
+                    self.ax.plot(x, log['train_loss'], marker)
+                    self.ax.plot(x, log['valid_loss'], marker)
+                self.out.clear_output(wait=True)
+                display(self.figure)
+        except KeyboardInterrupt:
+            pass
 
     def before_fit(self, info: dict):
         # if self.verbose:
