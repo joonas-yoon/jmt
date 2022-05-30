@@ -19,6 +19,14 @@ git clone https://github.com/joonas-yoon/jmt.git
 pip install -e jmt/.
 ```
 
+# Credits
+
+This project is developed and maintained by the repo owner, but the implementation was inspired or helped by the following contributions:
+
+- [frgfm/torch-scan](https://github.com/frgfm/torch-scan) : Useful summary for PyTorch modules
+- [PyTorch Lightning](https://www.pytorchlightning.ai/) : Well-made and fully flexible to fit model
+- [fastai](https://docs.fast.ai/) : Really fast and simple to train
+
 # License
 
 Under the MIT license. See the LICENSE file for more info.
