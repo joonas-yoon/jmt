@@ -27,6 +27,12 @@ This project is developed and maintained by the repo owner, but the implementati
 - [PyTorch Lightning](https://www.pytorchlightning.ai/) : Well-made and fully flexible to fit model
 - [fastai](https://docs.fast.ai/) : Really fast and simple to train
 
+# Contributing
+
+Contributing guidelines can be found [CONTRIBUTING.md](CONTRIBUTING.md).
+
+Welcome all contributions to the community and feel free to contribute.
+
 # License
 
 Under the MIT license. See the LICENSE file for more info.
